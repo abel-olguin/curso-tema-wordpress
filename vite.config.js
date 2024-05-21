@@ -5,8 +5,8 @@ export default defineConfig({
     build: {
         rollupOptions: {
             input   : {
-                main     : resolve(__dirname, 'src/js/main.js'),
-                mainStyle: resolve(__dirname, 'src/css/main.css'),
+                'main-script'     : resolve(__dirname, 'src/js/main-script.js'),
+                'main-style': resolve(__dirname, 'src/css/main-style.css'),
             },
             external: ['jQuery'],
             globals : {
