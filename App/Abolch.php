@@ -53,7 +53,6 @@ class Abolch
 
     private function scripts(): void
     {
-        wp_enqueue_script('abolch_alpine_script', $this->assetsPath . '/js/alpine-script.js', ['jquery'], '0.0.1');
         wp_enqueue_script('abolch_main_script', $this->assetsPath . '/js/main-script.js', ['jquery'], '0.0.1', true);
     }
 }

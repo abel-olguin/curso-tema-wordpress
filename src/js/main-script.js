@@ -50,5 +50,3 @@ if (t) {
         (window.scrollY || window.scrollTopBtn || document.getElementsByTagName("html")[0].scrollTopBtn) > s ? t.classList.add("is-active") : t.classList.remove("is-active")
     }), !1)
 }
-
-window.Alpine.start()
