@@ -4,23 +4,10 @@ namespace Abolch\App;
 
 class Abolch
 {
-    private $assetsPath;
-
     public function __construct()
     {
-        $this->assetsPath = get_template_directory_uri() . '/dist';
-        if (WP_HOTRELOAD) {
-            $this->assetsPath = 'http://localhost:5173/src';
-        }
-        add_action('wp_enqueue_scripts', [$this, 'themeScripts']);
         add_action('after_setup_theme', [$this, 'supports']);
         add_action('after_setup_theme', [$this, 'menu']);
-    }
-
-    public function themeScripts(): void
-    {
-        $this->scripts();
-        $this->styles();
     }
 
     public function supports(): void
@@ -46,13 +33,5 @@ class Abolch
         ]);
     }
 
-    private function styles(): void
-    {
-        wp_enqueue_style('abolch_main_style', $this->assetsPath . '/css/main-style.css', [], '0.0.1');
-    }
 
-    private function scripts(): void
-    {
-        wp_enqueue_script('abolch_main_script', $this->assetsPath . '/js/main-script.js', ['jquery'], '0.0.1', true);
-    }
 }

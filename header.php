@@ -48,5 +48,6 @@
         </div>
     </nav>
 <?php endif; ?>
-<main id="content" class="site">
+<main id="content" class="site bg-red-100">
+
 

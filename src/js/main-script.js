@@ -8,7 +8,7 @@ let scrollpos = window.scrollY;
 let header = document.getElementById("header");
 
 document.addEventListener('scroll', function () {
-
+    if (!progress) return;
     /*Refresh scroll % width*/
     scroll = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight) * 100;
     progress.style.setProperty('--scroll', scroll + '%');
