@@ -24,7 +24,7 @@ class Scripts
 
     public function addModuleAttribute($tag, $handle)
     {
-        if (!in_array($handle, ['abolch_main_script', 'abolch_alpine_script'])) return $tag;
+        if (!in_array($handle, ['abolch_main_script', 'abolch_alpine_script', 'abolch_hot_reload'])) return $tag;
         return str_replace(' src', ' type="module" src', $tag);
     }
 
@@ -35,6 +35,10 @@ class Scripts
 
     private function scripts(): void
     {
+        if (WP_HOTRELOAD) {
+            wp_enqueue_script('abolch_hot_reload', 'http://localhost:5173/@vite/client', [], null);
+        }
+
         wp_enqueue_script('abolch_main_script', $this->assetsPath . '/js/main-script.js', ['jquery'], '0.0.1', true);
 
 
