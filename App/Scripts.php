@@ -9,7 +9,7 @@ class Scripts
     public function __construct()
     {
         $this->assetsPath = get_template_directory_uri() . '/dist';
-        if (WP_HOTRELOAD) {
+        if (defined('WP_HOTRELOAD') && WP_HOTRELOAD) {
             $this->assetsPath = 'http://localhost:5173/src';
         }
         add_action('wp_enqueue_scripts', [$this, 'themeScripts']);
@@ -35,7 +35,7 @@ class Scripts
 
     private function scripts(): void
     {
-        if (WP_HOTRELOAD) {
+        if (defined('WP_HOTRELOAD') && WP_HOTRELOAD) {
             wp_enqueue_script('abolch_hot_reload', 'http://localhost:5173/@vite/client', [], null);
         }
 
