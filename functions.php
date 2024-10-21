@@ -5,6 +5,7 @@ use Abolch\App\Scripts;
 use Abolch\App\PostTypes;
 use Abolch\App\DemoData;
 
+require_once(__DIR__ . '/admin-functions.php');
 require_once(__DIR__ . '/App/Abolch.php');
 require_once(__DIR__ . '/App/Scripts.php');
 require_once(__DIR__ . '/App/Helpers.php');
