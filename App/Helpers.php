@@ -19,6 +19,17 @@ class Helpers
         return $content;
     }
 
+    public static function getPostByName($slug, $type = 'post')
+    {
+        $posts = get_posts([
+            'post_type' => $type,
+            'post_name' => $slug,
+            'numberposts' => 1,
+            'fields' => 'ids'
+        ]);
+
+        return array_shift($posts);
+    }
     public static function labels(string $singular, string $plural){
         return [
             "name"                  => _x( ucfirst($plural), "Post type general name", "abolch" ),
