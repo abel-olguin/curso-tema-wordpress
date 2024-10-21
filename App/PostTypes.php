@@ -23,6 +23,7 @@ class PostTypes
             'hierarchical'       => false,
             'menu_position'      => null,
             'supports'           => ['title', 'author', 'thumbnail', 'excerpt'],
+            'menu_icon'          => 'dashicons-info',
         ];
 
         register_post_type( 'testimonial', $args );
