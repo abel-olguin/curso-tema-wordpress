@@ -2,6 +2,8 @@
 
 namespace abolch\App\Admin;
 
+use Abolch\App\Helpers;
+
 class Menu {
 	public function __construct() {
 		add_action( 'admin_menu', [ $this, 'adminMenu' ] );
@@ -27,7 +29,9 @@ class Menu {
 	}
 
 	public function adminMainSettingsPage() {
-		echo '<h1>Abolch Settings</h1>';
+		$social = get_option('abolch_social_media');
+		$demoToken = get_option('abolch_demo_token');
+		Helpers::view('admin/main',compact('social','demoToken'));
 	}
 
 	public function adminSettingsPage() {
