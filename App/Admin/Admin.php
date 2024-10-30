@@ -11,8 +11,8 @@ class Admin {
 
 	private function addOptions() {
 		add_option('abolch_social_media', [
-			'facebook' => 'https://www.facebook.com/abolch',
-			'twitter' => 'https://twitter.com/abolch',
+			['name' => 'Facebook','url' => 'https://www.facebook.com/abolch', 'image' => ''],
+			['name' => 'Twitter', 'url' => 'https://twitter.com/abolch', 'image' => ''],
 		], '', true);
 
 		add_option('abolch_demo_token', 'abcde');
@@ -21,6 +21,7 @@ class Admin {
 	public function addScripts($name) {
 		if(str_contains($name, 'abolch-settings')){
 			wp_enqueue_script('abolch_admin_script', get_template_directory_uri() . '/src/js/admin/admin.js', ['jquery', 'wp-util'], '0.1');
+			wp_enqueue_media();
 		}
 	}
 
@@ -30,11 +31,7 @@ class Admin {
 	}
 
 	public function saveSettings() {
-
-		update_option('abolch_social_media', [
-			'facebook' => $_POST['social'][0],
-			'twitter' => $_POST['social'][1],
-		]);
+		update_option('abolch_social_media', $_POST['social']);
 
 		update_option('abolch_demo_token', $_POST['demoToken']);
 		wp_send_json_success();
