@@ -8,6 +8,7 @@ use Abolch\App\DemoData;
 
 require_once(__DIR__ . '/admin-functions.php');
 require_once(__DIR__ . '/App/Abolch.php');
+require_once(__DIR__ . '/App/Loop.php');
 require_once(__DIR__ . '/App/Scripts.php');
 require_once(__DIR__ . '/App/Helpers.php');
 require_once(__DIR__ . '/App/PostTypes.php');
@@ -19,3 +20,9 @@ new Scripts();
 new PostTypes();
 new CustomFields();
 new DemoData();
+
+
+
+\abolch\App\Loop::new()
+	->postType('testimonial')
+	->call(fn() => \Abolch\App\Helpers::view('card'));
