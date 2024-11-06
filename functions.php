@@ -23,6 +23,15 @@ new DemoData();
 
 
 
-\abolch\App\Loop::new()
+/*
+ \abolch\App\Loop::new()
 	->postType('testimonial')
 	->call(fn() => \Abolch\App\Helpers::view('card'));
+*/
+
+function ejemplo($arg1, $arg2 = null) {
+	die('hola');
+}
+add_action('abolch_save_settings','ejemplo', 10, 2);
+
+remove_action('abolch_save_settings','ejemplo', 10, 2);

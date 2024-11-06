@@ -32,10 +32,9 @@ class Admin {
 
 	public function saveSettings() {
 		update_option('abolch_social_media', $_POST['social']);
-
 		update_option('abolch_demo_token', $_POST['demoToken']);
+		do_action('abolch_save_settings', $_POST['social'], $_POST['demoToken']);
 		wp_send_json_success();
-
 		wp_die();
 	}
 }
