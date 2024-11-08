@@ -22,13 +22,13 @@ new CustomFields();
 new DemoData();
 
 
-
+#plugin
+function sendEmail(){
+	$message = apply_filters('abolch_email_message', 'has invited you to join the team ', 'Alicia');
+	$subject = apply_filters('abolch_email_subject', 'Welcome to abolch', );
+	\Abolch\App\Helpers::view('email', compact('subject','message'));
+}
 /*
- \abolch\App\Loop::new()
-	->postType('testimonial')
-	->call(fn() => \Abolch\App\Helpers::view('card'));
-*/
-
 
 #archivo dentro de un plugin
 function hola1($social, $token){
@@ -44,3 +44,14 @@ add_action('abolch_save_settings','hola2', 10, 2);
 
 #fuera del plugin
 remove_action('abolch_save_settings', 'hola1', 10, 2);
+*/
+
+
+#function
+add_filter('abolch_email_subject', function ($subject) {
+	return " Hola1";
+});
+
+add_filter('abolch_email_message', function ($message, $name) {
+	return $message."<h1 class='text-white'>".$name."</h1>";
+}, 10, 2);
