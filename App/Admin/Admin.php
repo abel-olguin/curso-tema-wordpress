@@ -31,6 +31,10 @@ class Admin {
 	}
 
 	public function saveSettings() {
+		if(!current_user_can('abolch_settings')){
+			wp_send_json_error();
+			wp_die();
+		}
 		update_option('abolch_social_media', $_POST['social']);
 		update_option('abolch_demo_token', $_POST['demoToken']);
 		//agregar codigo de devs

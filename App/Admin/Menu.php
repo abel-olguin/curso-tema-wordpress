@@ -13,7 +13,7 @@ class Menu {
 		add_menu_page(
 			__('Abolch Settings', 'abolch'),
 			__('Abolch Settings', 'abolch'),
-			'manage_options',
+			'abolch_settings',
 			'abolch-settings',
 			[$this, 'adminMainSettingsPage'],
 		'dashicons-welcome-view-site',);
@@ -22,7 +22,7 @@ class Menu {
 			'abolch-settings',
 			__('Abolch Submenu', 'abolch'),
 			__('Abolch Submenu', 'abolch'),
-			'manage_options',
+			'abolch_settings',
 			'abolch-settings-submenu',
 			[$this, 'adminSettingsPage'],
 			'dashicons-welcome-view-site',);

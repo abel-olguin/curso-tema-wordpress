@@ -8,6 +8,7 @@ class Abolch
     {
         add_action('after_setup_theme', [$this, 'supports']);
         add_action('after_setup_theme', [$this, 'menu']);
+        add_action('after_setup_theme', [$this, 'capabilities']);
     }
 
     public function supports(): void
@@ -33,5 +34,10 @@ class Abolch
         ]);
     }
 
-
+	public function capabilities(): void{
+		$admin = get_role('administrator');
+		$editor = get_role('editor');
+		$admin->add_cap('abolch_settings');
+		$editor->add_cap('abolch_settings');
+	}
 }
