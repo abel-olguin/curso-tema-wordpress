@@ -20,7 +20,14 @@ class Admin {
 
 	public function addScripts($name) {
 		if(str_contains($name, 'abolch-settings')){
-			wp_enqueue_script('abolch_admin_script', get_template_directory_uri() . '/src/js/admin/admin.js', ['jquery', 'wp-util'], '0.1');
+			wp_enqueue_script('jquery-ui-tabs');
+			wp_enqueue_script('abolch_admin_script',
+				get_template_directory_uri() . '/src/js/admin/admin.js',
+				['jquery', 'wp-util'], '0.1');
+
+			wp_enqueue_style('abolch_admin_style',
+				get_template_directory_uri(). '/src/css/admin-style.css',
+				[], '0.0.1');
 			wp_enqueue_media();
 		}
 	}

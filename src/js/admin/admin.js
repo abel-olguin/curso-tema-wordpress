@@ -32,5 +32,6 @@
             })
             custom_uploader.open()
         })
+        jQuery('.tabs').tabs();
     });
 })(jQuery)

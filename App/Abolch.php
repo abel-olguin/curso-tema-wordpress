@@ -8,7 +8,8 @@ class Abolch
     {
         add_action('after_setup_theme', [$this, 'supports']);
         add_action('after_setup_theme', [$this, 'menu']);
-        add_action('after_setup_theme', [$this, 'capabilities']);
+        add_action('after_switch_theme', [$this, 'capabilities']);
+        add_action('after_switch_theme', [$this, 'roles']);
     }
 
     public function supports(): void
@@ -39,5 +40,15 @@ class Abolch
 		$editor = get_role('editor');
 		$admin->add_cap('abolch_settings');
 		$editor->add_cap('abolch_settings');
+	}
+
+	public function roles(): void{
+		#remove_role('moderator');
+		add_role('moderator', __('Moderator', 'abolch'), [
+			...get_role('editor')->capabilities,
+			'abolch_settings' => true
+		]);
+		#get_role('moderator')->add_cap('abolch_settings');
+		#get_role('moderator')->remove_cap('abolch_settings');
 	}
 }
