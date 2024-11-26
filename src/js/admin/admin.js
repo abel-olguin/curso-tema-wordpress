@@ -1,12 +1,14 @@
-(function ($){
+(function ($) {
     $(document).ready(function () {
         let custom_uploader = null
-        $('#abolch-submit-settings').click( (e) => {
+        $('.abolch-submit-settings').click((e) => {
             e.preventDefault();
             wp.ajax.post('abolchSaveSettings',
-                Object.fromEntries(new FormData($('#abolch-settings-form')[0]))
+                Object.fromEntries(new FormData($(e.target).closest('form')[0]))
             )
-                .done(function (data) {console.log(data)})
+                .done(function (data) {
+                    console.log(data)
+                })
                 .fail(function (errorThrown) {
                     console.log(errorThrown);
                 })
@@ -14,7 +16,7 @@
 
         $('.upload-image').click(function (e) {
             e.preventDefault();
-            if(custom_uploader){
+            if (custom_uploader) {
                 custom_uploader.open();
                 return;
             }

@@ -50,3 +50,43 @@ if (t) {
         (window.scrollY || window.scrollTopBtn || document.getElementsByTagName("html")[0].scrollTopBtn) > s ? t.classList.add("is-active") : t.classList.remove("is-active")
     }), !1)
 }
+
+document.addEventListener('alpine:init', () => {
+    Alpine.data( "sliderData", (slides) => ({
+        slides,
+        currentSlideIndex: 1,
+        isPaused: false,
+        autoplayIntervalTime: 4000,
+        init(){
+            this.autoplay()
+        },
+        previous() {
+            if (this.currentSlideIndex > 1) {
+                this.currentSlideIndex = this.currentSlideIndex - 1
+            } else {
+                // If it's the first slide, go to the last slide
+                this.currentSlideIndex = this.slides.length
+            }
+        },
+        next() {
+            if (this.currentSlideIndex < this.slides.length) {
+                this.currentSlideIndex = this.currentSlideIndex + 1
+            } else {
+                // If it's the last slide, go to the first slide
+                this.currentSlideIndex = 1
+            }
+        },
+        autoplay() {
+            this.autoplayInterval = setInterval(() => {
+                if (! this.isPaused) {
+                    this.next()
+                }
+            }, this.autoplayIntervalTime)
+        },
+        setAutoplayInterval(newIntervalTime) {
+            clearInterval(this.autoplayInterval)
+            this.autoplayIntervalTime = newIntervalTime
+            this.autoplay()
+        },
+    }));
+})
