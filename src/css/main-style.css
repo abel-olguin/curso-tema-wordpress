@@ -2,10 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-.menu{
-    @apply flex gap-5
+.menu-main-container {
+    @apply flex-1
 }
-.menu-item{
+
+.menu {
+    @apply flex gap-5 items-center;
+}
+
+.menu-item {
     @apply text-gray-800 px-2 py-1 w-full p-3
 }
 
@@ -16,13 +21,13 @@
 .menu .menu-item-has-children .sub-menu {
     @apply absolute bg-gray-500 shadow-2xl  left-0 border-b
     border-b-gray-200 z-10 transition-all duration-500 ease-in-out translate-y-5
-      min-w-[200px] opacity-0 hover:text-gray-50;
+    min-w-[200px] opacity-0 hover:text-gray-50;
 }
 
 .menu .menu-item .menu-item-has-children:nth-child(n+1) .sub-menu {
     @apply absolute left-full top-0;
 }
 
-.menu .menu-item-has-children:hover > .sub-menu{
+.menu .menu-item-has-children:hover > .sub-menu {
     @apply flex opacity-100 translate-y-0 pointer-events-auto
 }
