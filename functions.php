@@ -10,12 +10,12 @@ use Abolch\App\Taxonomies;
 
 require_once( __DIR__ . '/admin-functions.php' );
 require_once( __DIR__ . '/App/Abolch.php' );
-require_once( __DIR__ . '/App/Loop.php' );
 require_once( __DIR__ . '/App/Scripts.php' );
 require_once( __DIR__ . '/App/Helpers.php' );
 require_once( __DIR__ . '/App/PostTypes.php' );
 require_once( __DIR__ . '/App/CustomFields.php' );
 require_once( __DIR__ . '/App/DemoData.php' );
+require_once( __DIR__ . '/App/Loop.php' );
 require_once( __DIR__ . '/App/Taxonomies.php' );
 
 new Abolch();

@@ -32,6 +32,18 @@ class Loop {
 		return $this;
 	}
 
+	public function taxonomy( $taxonomy, ...$values ) {
+		$this->loop['tax_query'] = [
+			[
+				'taxonomy' => $taxonomy,
+				'field'    => 'slug',
+				'terms'    => $values,
+			],
+		];
+
+		return $this;
+	}
+
 	public function getArray() {
 		$wpQuery = new WP_Query( $this->loop );
 

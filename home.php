@@ -4,10 +4,13 @@
  */
 
 use Abolch\App\Helpers;
+use abolch\App\Loop;
 
 $sliders = get_option( 'abolch_sliders' );
 get_header();
 ?>
+<?php Loop::new( 'post' )->taxonomy( 'grupo', 'nuevo' )->call( fn() => Helpers::view( 'card' ) ); ?>
+
     <div class="container px-4 md:px-0 max-w-6xl mx-auto">
         <div class="mx-0 sm:mx-6">
 
