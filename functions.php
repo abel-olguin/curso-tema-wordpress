@@ -3,7 +3,6 @@
 use Abolch\App\Abolch;
 use abolch\App\CustomFields;
 use Abolch\App\DemoData;
-use Abolch\App\Helpers;
 use Abolch\App\PostTypes;
 use Abolch\App\Scripts;
 use Abolch\App\Taxonomies;
@@ -26,37 +25,45 @@ new DemoData();
 new Taxonomies();
 
 
-#plugin
-function sendEmail() {
-	$message = apply_filters( 'abolch_email_message', 'has invited you to join the team ', 'Alicia' );
-	$subject = apply_filters( 'abolch_email_subject', 'Welcome to abolch', );
-	Helpers::view( 'email', compact( 'subject', 'message' ) );
+add_filter( 'posts_where', 'search_where' );
+
+function search_where( $where ) {
+	global $wpdb;
+	if ( is_search() ) {
+		$where .= " OR ({$wpdb->terms}.name LIKE '%" . get_search_query() . "%'
+		 AND {$wpdb->term_taxonomy}.taxonomy IN ('grupo') AND {$wpdb->posts}.post_status ='publish')";
+	}
+
+	return $where;
 }
 
-/*
+add_filter( 'posts_join', 'search_join' );
+function search_join( $join ) {
+	global $wpdb;
+	$relations = $wpdb->term_relationships;
+	$taxonomy  = $wpdb->term_taxonomy;
 
-#archivo dentro de un plugin
-function hola1($social, $token){
-	echo 1;
+	if ( is_search() ) {
+		$join .= " LEFT JOIN {$relations} ON {$wpdb->posts}.ID = {$relations}.object_id
+		 INNER JOIN {$taxonomy} ON {$taxonomy}.term_taxonomy_id = {$relations}.term_taxonomy_id
+		 INNER JOIN {$wpdb->terms} ON {$wpdb->terms}.term_id = {$taxonomy}.term_id";
+	}
+
+	return $join;
 }
 
-function hola2($social, $token){
-	echo 2;
+add_filter( 'posts_groupby', 'search_groupby' );
+function search_groupby( $groupby ) {
+	global $wpdb;
+	$groupby_id = "{$wpdb->posts}.ID";
+
+	if ( ! is_search() || strpos( $groupby, $groupby_id ) !== false ) {
+		return $groupby;
+	}
+
+	if ( ! strlen( trim( $groupby ) ) ) {
+		return $groupby_id;
+	}
+
+	return "{$groupby},{$groupby_id}";
 }
-
-add_action('abolch_save_settings', 'hola1', 10, 2);
-add_action('abolch_save_settings','hola2', 10, 2);
-
-#fuera del plugin
-remove_action('abolch_save_settings', 'hola1', 10, 2);
-*/
-
-
-#function
-add_filter( 'abolch_email_subject', function ( $subject ) {
-	return " Hola1";
-} );
-
-add_filter( 'abolch_email_message', function ( $message, $name ) {
-	return $message . "<h1 class='text-white'>" . $name . "</h1>";
-}, 10, 2 );

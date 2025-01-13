@@ -32,6 +32,14 @@
     @apply flex opacity-100 translate-y-0 pointer-events-auto
 }
 
+.search-field {
+    @apply bg-gray-200 rounded border px-2 py-1 focus:outline-none focus:right-0
+}
+
+.search-submit {
+    @apply bg-gray-300 hover:bg-gray-400 rounded px-2 py-1 cursor-pointer
+}
+
 .smooth {
     transition: box-shadow 0.3s ease-in-out;
 }
